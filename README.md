@@ -88,7 +88,6 @@
 ![nt1](images/nt1.png)
 ![ns1](images/ns1.png)
 ![mb1](images/mb1.png)
-![po1](images/po1.png)
 ![cb1](images/cb1.png)
 
 
@@ -100,12 +99,11 @@
 * Bottleneck: Disk IO saturation (iowait up to ~95%)
 * Notes: Stable only at medium load
 
-![po1](images/po2.png)
-![nt1](images/nt2.png)
-![ns1](images/ns2.png)
-![mb1](images/mb2.png)
-![po1](images/po2.png)
-![cb1](images/cb2.png)
+![po2](images/po2.png)
+![nt2](images/nt2.png)
+![ns2](images/ns2.png)
+![mb2](images/mb2.png)
+![cb2](images/cb2.png)
 ### Scenario 3 — n2-highmem-32
 
 * Throughput: ~19.8k req/s
@@ -114,12 +112,11 @@
 * Bottleneck: Disk IO (writes ~37 MB/s, iowait ~40–45%)
 * Notes: Balanced throughput vs latency
 
-![po1](images/po3.png)
-![nt1](images/nt3.png)
-![ns1](images/ns3.png)
-![mb1](images/mb3.png)
-![po1](images/po3.png)
-![cb1](images/cb3.png)
+![po3](images/po3.png)
+![nt3](images/nt3.png)
+![ns3](images/ns3.png)
+![mb3](images/mb3.png)
+![cb3](images/cb3.png)
 
 ### Scenario 4 — n2-standard-48
 
@@ -139,12 +136,11 @@
 * **No.4 (n2-48)** → Highest throughput ~23k req/s, p99 ~346 ms
 * ✅ All error rates <1%, clustered at top step and spike phases
 
-![po1](images/po4.png)
-![nt1](images/nt4.png)
-![ns1](images/ns4.png)
-![mb1](images/mb4.png)
-![po1](images/po4.png)
-![cb1](images/cb4.png)
+![po4](images/po4.png)
+![nt4](images/nt4.png)
+![ns4](images/ns4.png)
+![mb4](images/mb4.png)
+![cb4](images/cb4.png)
 
 ---
 
