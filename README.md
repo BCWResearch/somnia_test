@@ -46,12 +46,7 @@
   * Error rate < 1%
 * ✅ All scenarios passed these thresholds
 
-![po1](images/po1.png)
-![nt1](images/nt1.png)
-![ns1](images/ns1.png)
-![mb1](images/mb1.png)
-![po1](images/po1.png)
-![cb1](images/cb1.png)
+
 ---
 
 ## Workload Mix
@@ -89,7 +84,12 @@
 * Bottleneck: Disk IO (write peak ~93 MB/s, iowait ~60–65%)
 * Notes: Best latency profile
 
-
+![po1](images/po1.png)
+![nt1](images/nt1.png)
+![ns1](images/ns1.png)
+![mb1](images/mb1.png)
+![po1](images/po1.png)
+![cb1](images/cb1.png)
 
 
 ### Scenario 2 — n2d-highmem-16
@@ -100,6 +100,12 @@
 * Bottleneck: Disk IO saturation (iowait up to ~95%)
 * Notes: Stable only at medium load
 
+![po1](images/po2.png)
+![nt1](images/nt2.png)
+![ns1](images/ns2.png)
+![mb1](images/mb2.png)
+![po1](images/po2.png)
+![cb1](images/cb2.png)
 ### Scenario 3 — n2-highmem-32
 
 * Throughput: ~19.8k req/s
@@ -107,6 +113,13 @@
 * Error rate: 0.91% ✅
 * Bottleneck: Disk IO (writes ~37 MB/s, iowait ~40–45%)
 * Notes: Balanced throughput vs latency
+
+![po1](images/po3.png)
+![nt1](images/nt3.png)
+![ns1](images/ns3.png)
+![mb1](images/mb3.png)
+![po1](images/po3.png)
+![cb1](images/cb3.png)
 
 ### Scenario 4 — n2-standard-48
 
@@ -126,7 +139,12 @@
 * **No.4 (n2-48)** → Highest throughput ~23k req/s, p99 ~346 ms
 * ✅ All error rates <1%, clustered at top step and spike phases
 
-*(Insert Comparison Image here)*
+![po1](images/po4.png)
+![nt1](images/nt4.png)
+![ns1](images/ns4.png)
+![mb1](images/mb4.png)
+![po1](images/po4.png)
+![cb1](images/cb4.png)
 
 ---
 
