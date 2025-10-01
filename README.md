@@ -97,7 +97,7 @@
 * Throughput: ~11.1k req/s
 * Latency: p95 = 10 ms, p99 = 178 ms
 * Error rate: 0.87% ✅
-* Bottleneck: Disk IO saturation (iowait up to ~95%)
+* Bottleneck: Disk IO saturation (write peak ~78 MB/s,iowait up to ~95%)
 * Notes: Stable only at medium load
 
 ![po2](images/po2.png)
@@ -113,7 +113,7 @@
 * Throughput: ~19.8k req/s
 * Latency: p95 = 13 ms, p99 = 190 ms
 * Error rate: 0.91% ✅
-* Bottleneck: Disk IO (writes ~37 MB/s, iowait ~40–45%)
+* Bottleneck: Disk IO (write peak ~45 MB/s,iowait ~40–45%)
 * Notes: Balanced throughput vs latency
 
 ![po3](images/po3.png)
@@ -128,7 +128,7 @@
 * Throughput: ~23.1k req/s
 * Latency: p95 = 21 ms, p99 = 346 ms
 * Error rate: 0.92% ✅
-* Bottleneck: Disk IO (writes ~51 MB/s, iowait ~60–65%)
+* Bottleneck: Disk IO (write peak ~51 MB/s, iowait ~60–65%)
 * Notes: Highest throughput option
 
 ![po4](images/po4.png)
