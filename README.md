@@ -126,6 +126,11 @@
 * Bottleneck: Disk IO (writes ~51 MB/s, iowait ~60–65%)
 * Notes: Highest throughput option
 
+![po4](images/po4.png)
+![nt4](images/nt4.png)
+![ns4](images/ns4.png)
+![mb4](images/mb4.png)
+![cb4](images/cb4.png)
 ---
 
 ## Cross-Machine Comparison
@@ -136,11 +141,7 @@
 * **No.4 (n2-48)** → Highest throughput ~23k req/s, p99 ~346 ms
 * ✅ All error rates <1%, clustered at top step and spike phases
 
-![po4](images/po4.png)
-![nt4](images/nt4.png)
-![ns4](images/ns4.png)
-![mb4](images/mb4.png)
-![cb4](images/cb4.png)
+
 
 ---
 
