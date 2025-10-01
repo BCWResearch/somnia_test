@@ -89,6 +89,7 @@
 ![ns1](images/ns1.png)
 ![mb1](images/mb1.png)
 ![cb1](images/cb1.png)
+![dt1](images/dt1.png)
 
 
 ### Scenario 2 — n2d-highmem-16
@@ -104,6 +105,9 @@
 ![ns2](images/ns2.png)
 ![mb2](images/mb2.png)
 ![cb2](images/cb2.png)
+![dt2](images/dt2.png)
+
+
 ### Scenario 3 — n2-highmem-32
 
 * Throughput: ~19.8k req/s
@@ -117,6 +121,7 @@
 ![ns3](images/ns3.png)
 ![mb3](images/mb3.png)
 ![cb3](images/cb3.png)
+![dt3](images/dt3.png)
 
 ### Scenario 4 — n2-standard-48
 
@@ -131,6 +136,7 @@
 ![ns4](images/ns4.png)
 ![mb4](images/mb4.png)
 ![cb4](images/cb4.png)
+![dt4](images/dt4.png)
 
 ---
 
