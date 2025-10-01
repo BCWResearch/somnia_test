@@ -131,6 +131,7 @@
 ![ns4](images/ns4.png)
 ![mb4](images/mb4.png)
 ![cb4](images/cb4.png)
+
 ---
 
 ## Cross-Machine Comparison
@@ -140,8 +141,6 @@
 * **No.3 (n2-32)** → Balanced ~20k req/s, p99 ~190 ms
 * **No.4 (n2-48)** → Highest throughput ~23k req/s, p99 ~346 ms
 * ✅ All error rates <1%, clustered at top step and spike phases
-
-
 
 ---
 
