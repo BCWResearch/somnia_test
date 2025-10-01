@@ -155,7 +155,7 @@
 * **Memory**: stable; no swap used
 * Key causes: block and log fetch methods drive storage pressure
 
-*(Insert Bottlenecks Image here)*
+![bottle](images/bottle.png)
 
 ---
 
@@ -190,7 +190,7 @@
   * It is impossible to include all influencing factors
   * The number of aspects grows exponentially
 
-*(Insert Risks Image here)*
+
 
 ---
 
