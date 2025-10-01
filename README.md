@@ -46,6 +46,12 @@
   * Error rate < 1%
 * ✅ All scenarios passed these thresholds
 
+![po1](images/po1.png)
+![nt1](images/nt1.png)
+![ns1](images/ns1.png)
+![mb1](images/mb1.png)
+![po1](images/po1.png)
+![cb1](images/cb1.png)
 ---
 
 ## Workload Mix
@@ -82,6 +88,9 @@
 * Error rate: 0.79% ✅
 * Bottleneck: Disk IO (write peak ~93 MB/s, iowait ~60–65%)
 * Notes: Best latency profile
+
+
+
 
 ### Scenario 2 — n2d-highmem-16
 
