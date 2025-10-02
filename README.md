@@ -198,4 +198,158 @@
 
 
 
+# K6 and Prometheus Setup Guide
 
+This guide provides step-by-step instructions to install k6, run a k6 test with Prometheus output, set up the required environment variable, and configure a Prometheus service using a systemd unit file.
+
+## Prerequisites
+
+- A Linux-based system (e.g., Ubuntu, CentOS, or similar).
+- Root or sudo privileges for installing packages and configuring services.
+- Access to the internet for downloading k6 and Prometheus.
+
+## Step 1: Install k6
+
+Follow these steps to install k6 on your system:
+
+1. **Add the k6 repository key**:
+```bash
+   sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747825693
+```
+### Add the k6 repository:For Debian/Ubuntu-based systems:
+```
+echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+```
+### Update the package list and install k6:
+```
+sudo apt-get update
+sudo apt-get install k6
+```
+### Verify k6 installation:
+```
+k6 version
+```
+## Step 2: Run k6 Test with Prometheus Output
+To execute a k6 test and send the results to a Prometheus instance, run the following command:
+```
+k6 run -o experimental-prometheus-rw v4-somnia.js
+```
+Ensure the **v4-somnia.js** file is present in your working directory.
+The **-o experimental-prometheus-rw** flag enables k6 to send metrics to a Prometheus server configured for remote write.
+
+## Step 3: Set Prometheus Environment Variable
+Set the environment variable to specify the Prometheus server URL for remote write:
+```
+export K6_PROMETHEUS_RW_SERVER_URL=http://10.132.0.3:9090/api/v1/write
+```
+This tells k6 where to send the metrics. Replace **http://10.132.0.3:9090/api/v1/write** with your actual Prometheus server URL if different.
+To make this environment variable persistent, add it to your shell configuration file (e.g., **~/.bashrc or ~/.zshrc**):
+
+```
+echo 'export K6_PROMETHEUS_RW_SERVER_URL=http://10.132.0.3:9090/api/v1/write' >> ~/.bashrc
+source ~/.bashrc
+```
+## Step 4: Configure Prometheus Service
+To set up Prometheus as a systemd service, create a service file with the provided configuration.
+
+
+### installing promethus:
+```
+#!/bin/bash
+#PROMETHEUS_VERSION="2.24.0"
+PROMETHEUS_VERSION=$(curl -sL https://api.github.com/repos/prometheus/prometheus/releases/latest | grep "tag_name"   | sed -E 's/.*"([^"]+)".*/\1/'|sed 's/v//')
+wget https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
+tar -xzvf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
+cd prometheus-${PROMETHEUS_VERSION}.linux-amd64/
+# if you just want to start prometheus as root
+#./prometheus --config.file=prometheus.yml
+
+# create user
+useradd --no-create-home --shell /bin/false prometheus 
+
+# create directories
+mkdir -p /etc/prometheus
+mkdir -p /var/lib/prometheus
+
+# set ownership
+chown prometheus:prometheus /etc/prometheus
+chown prometheus:prometheus /var/lib/prometheus
+
+# copy binaries
+cp prometheus /usr/local/bin/
+cp promtool /usr/local/bin/
+
+chown prometheus:prometheus /usr/local/bin/prometheus
+chown prometheus:prometheus /usr/local/bin/promtool
+
+# copy config
+cp -r consoles /etc/prometheus
+cp -r console_libraries /etc/prometheus
+cp prometheus.yml /etc/prometheus/prometheus.yml
+
+chown -R prometheus:prometheus /etc/prometheus/consoles
+chown -R prometheus:prometheus /etc/prometheus/console_libraries
+
+# setup systemd
+echo '[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --storage.tsdb.retention=150d \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.enable-lifecycle
+ExecReload=/bin/kill -HUP $MAINPID
+[Install]
+WantedBy=multi-user.target' > /etc/systemd/system/prometheus.service
+
+systemctl daemon-reload
+systemctl enable prometheus
+systemctl start prometheus
+```
+
+Create the Prometheus systemd service file:
+```
+sudo nano /etc/systemd/system/prometheus.service
+```
+
+### Add the following content:
+```
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/var/lib/prometheus/ \
+    --storage.tsdb.retention.time=10d \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.enable-remote-write-receiver \
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.enable-lifecycle
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+**Save and exit the editor (Ctrl+O, then Ctrl+X in nano).**
+```
+sudo systemctl daemon-reload
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+sudo systemctl status prometheus
+```
