@@ -198,13 +198,4 @@
 
 
 
----
-
-## Next Steps
-
-* Enable small batch requests and re-test
-* Repeat with Local SSD or tuned disk options
-* Run multiple nodes behind a load balancer
-* Conduct long-duration tests (1–2 hours)
-* Add cost-per-request analysis for each machine
 
