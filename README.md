@@ -232,9 +232,9 @@ k6 version
 ## Step 2: Run k6 Test with Prometheus Output
 To execute a k6 test and send the results to a Prometheus instance, run the following command:
 ```
-k6 run -o experimental-prometheus-rw v4-somnia.js
+k6 run -o experimental-prometheus-rw somnia.js
 ```
-Ensure the **v4-somnia.js** file is present in your working directory.
+Ensure the **somnia.js** file is present in your working directory.
 The **-o experimental-prometheus-rw** flag enables k6 to send metrics to a Prometheus server configured for remote write.
 
 ## Step 3: Set Prometheus Environment Variable
